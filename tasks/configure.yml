@@ -107,6 +107,10 @@
   systemd:
     daemon_reload: yes
 
+- name: Init mariadb in its directory
+  shell: "mysql_install_db --datadir={{ mysql_datadir }}"
+  ignore_errors: yes
+
 - name: Ensure MySQL is started and enabled on boot.
   service: "name={{ mysql_daemon }} state=started enabled={{ mysql_enabled_on_startup }}"
   register: mysql_service_configuration
