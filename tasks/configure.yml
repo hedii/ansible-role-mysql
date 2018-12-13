@@ -95,6 +95,12 @@
       ProtectHome=false
       ProtectSystem=off
 
+- name: Set permission for mysql home folder
+  file:
+    path: "{{ mysql_datadir }}"
+    owner: mysql
+    group: mysql
+
 - name: Systemctl daemon reload
   systemd:
     daemon_reload: yes
