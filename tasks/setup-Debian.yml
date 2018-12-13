@@ -1,4 +1,16 @@
 ---
+- name: Add mariadb repo key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "0xF1656F24C74CD1D8"
+    state: present
+
+- name: Add mariadb repo
+  apt_repository:
+    repo: deb [arch=amd64] http://mariadb.mirrors.ovh.net/MariaDB/repo/10.3/debian stretch main
+    state: present
+    update_cache: yes
+
 - name: Check if MySQL is already installed.
   stat: path=/etc/init.d/mysql
   register: mysql_installed
