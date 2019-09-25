@@ -2,12 +2,12 @@
 - name: Add mariadb repo key
   apt_key:
     keyserver: keyserver.ubuntu.com
-    id: "0xF1656F24C74CD1D8"
+    id: "{{ mysql_repo_identifier_key }}"
     state: present
 
 - name: Add mariadb repo
   apt_repository:
-    repo: deb [arch=amd64] http://mariadb.mirrors.ovh.net/MariaDB/repo/10.3/debian stretch main
+    repo: "deb [arch=amd64] http://mariadb.mirrors.ovh.net/MariaDB/repo/{{ mysql_mariadb_version }}/debian {{ mysql_debian_distribution }} main"
     state: present
     update_cache: yes
 
