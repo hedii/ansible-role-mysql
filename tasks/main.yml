@@ -1,4 +1,10 @@
 ---
+- name: Setup systemd tasks max
+  lineinfile:
+    path: /etc/systemd/system.conf
+    regexp: '^#DefaultTasksMax='
+    line: DefaultTasksMax=infinity
+
 # Variable configuration.
 - include_tasks: variables.yml
 
